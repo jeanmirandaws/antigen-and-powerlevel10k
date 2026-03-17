@@ -12,10 +12,17 @@ Antigen is a small set of functions that help you easily manage your shell (zsh)
 
 Powerlevel10k is a theme for the ZSH shell that provides a powerful and aesthetically pleasing experience. It comes with a set of customizable options that allow you to customize the look of your terminal.
 
+## 🚀 Fast Installation (Recommended)
+
+If you are on a new machine (Ubuntu/Debian or WSL), you can set everything up by running just this command:
+
+```bash
+curl -sSL [https://raw.githubusercontent.com/jeanmirandaws/antigen-and-powerlevel10k/main/install.sh](https://raw.githubusercontent.com/jeanmirandaws/antigen-and-powerlevel10k/main/install.sh) | bash
+```
+
 ## Prerequisites
 
 [zsh](https://www.zsh.org) must be installed on your system.
-
 
 ## Installation
 
