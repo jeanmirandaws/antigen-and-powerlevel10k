@@ -1,6 +1,14 @@
 #!/bin/bash
 
-echo "Iniciando a configuração do terminal..."
+echo "Verificando dependências..."
+
+# Instalar Zsh se não existir (focado em Debian/Ubuntu)
+if ! command -v zsh &> /dev/null; then
+    echo "Zsh não encontrado. Instalando..."
+    sudo apt update && sudo apt install zsh -y
+else
+    echo "Zsh já está instalado."
+fi
 
 # 1. Instalar o Antigen
 if [ ! -f "$HOME/antigen.zsh" ]; then
@@ -8,16 +16,11 @@ if [ ! -f "$HOME/antigen.zsh" ]; then
     curl -L git.io/antigen > "$HOME/antigen.zsh"
 fi
 
-# 2. Clonar seu repositório de configurações (temporariamente)
+# 2. Clonar e configurar (seu código anterior...)
 TEMP_DIR=$(mktemp -d)
 git clone https://github.com/jeanmirandaws/antigen-and-powerlevel10k.git "$TEMP_DIR"
-
-# 3. Mover os arquivos para a Home
-echo "Configurando .zshrc e .antigenrc..."
 cp "$TEMP_DIR/.zshrc" "$HOME/.zshrc"
 cp "$TEMP_DIR/.antigenrc" "$HOME/.antigenrc"
-
-# 4. Limpeza
 rm -rf "$TEMP_DIR"
 
-echo "Setup concluído! Reinicie o terminal ou digite 'zsh'."
+echo "Setup concluído! Agora você pode digitar 'zsh'."
