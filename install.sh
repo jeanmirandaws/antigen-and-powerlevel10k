@@ -1,4 +1,32 @@
 #!/bin/bash
+echo "Instalando Meslo Nerd Font..."
+
+# Criar o diretório de fontes se não existir
+FONT_DIR="$HOME/.local/share/fonts"
+mkdir -p "$FONT_DIR"
+
+# URLs das fontes recomendadas pelo autor do Powerlevel10k
+fonts=(
+    "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf"
+    "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf"
+    "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf"
+    "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf"
+)
+
+for font_url in "${fonts[@]}"; do
+    font_name=$(basename "$font_url" | sed 's/%20/ /g')
+    if [ ! -f "$FONT_DIR/$font_name" ]; then
+        echo "Baixando $font_name..."
+        curl -L "$font_url" -o "$FONT_DIR/$font_name"
+    fi
+done
+
+# Atualizar o cache de fontes do sistema
+fc-cache -fv > /dev/null
+
+echo "Fontes instaladas com sucesso!"
+
+
 
 echo "Verificando dependências..."
 
